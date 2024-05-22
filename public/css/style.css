@@ -1,0 +1,21 @@
+.center {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+}
+
+.form-signin {
+    width: 100%;
+    max-width: 330px;
+    padding: 15px;
+    margin: auto;
+}
+
+.regForm {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    height: 100vh;
+    padding-top: 40px;
+    padding-bottom: 40px;
+}

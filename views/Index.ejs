@@ -1,0 +1,69 @@
+<%- include('partials/header') %>
+    <div class="container-fluid">
+        <div class="d-flex">
+            <div class="col-4 col-md-2">
+                <div class="d-flex flex-column flex-shrink-0 px-3 bg-light">
+                    <div class="fs-4 pt-3">Upload Files</div>
+                    <hr>
+                    <form action="/upload" method="post" class="d-flex" id="upload" enctype="multipart/form-data">
+                        <input class="form-control form-control-sm" type="file" name="fileToUpload">
+                        <button class="btn btn-secondary" type="submit" value="Upload File"><svg
+                                xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor"
+                                class="bi bi-arrow-up" viewBox="0 0 16 16">
+                                <path fill-rule="evenodd"
+                                    d="M8 15a.5.5 0 0 0 .5-.5V2.707l3.146 3.147a.5.5 0 0 0 .708-.708l-4-4a.5.5 0 0 0-.708 0l-4 4a.5.5 0 1 0 .708.708L7.5 2.707V14.5a.5.5 0 0 0 .5.5" />
+                            </svg></button>
+                    </form>
+                    <form action="/Logout" method="post" id="logout">
+                        <button class="btn btn-outline-secondary mt-3" href=#
+                            onclick="document.getElementById('logout').submit()">
+                            <i class="bi bi-box-arrow-in-right"></i>
+                            <span>Logout</span>
+                        </button>
+                    </form>
+                    <% if(message !='' ){ %>
+                        <div class="alert alert-warning" role="alert">
+                            <%=message%>
+                        </div>
+                        <% } %>
+                            <svg class="bi me-2" width="16" height="81vh"></svg>
+                </div>
+            </div>
+            <div class="col-8 col-md-10">
+                <table class="table">
+                    <thead>
+                        <tr>
+                            <th scope="col-1">#</th>
+                            <th scope="col-5">File Name</th>
+                            <th scope="col-3">Date Uploaded</th>
+                            <th scope="col-3"></th>
+                        </tr>
+                    </thead>
+                    <tbody>
+                        <%fileList.forEach((file, i)=> {%>
+                            <tr>
+                                <th scope="row">
+                                    <%=Number(i)+1%>
+                                </th>
+                                <td>
+                                    <%=file.slice(-file.length, -21)%>
+                                </td>
+                                <td>
+                                    <%=file.slice(-20, -10)%>
+                                </td>
+                                <td>
+                                    <form action="/action" method="post">
+                                        <input type="text" value="<%=file%>" name="file" hidden>
+                                        <button class="btn btn-primary" value="download" name="action">
+                                            Download</button>
+                                        <button class="btn btn-danger" value="delete" name="action"> Delete</button>
+                                    </form>
+                                </td>
+                            </tr>
+                            <%});%>
+                    </tbody>
+                </table>
+            </div>
+        </div>
+    </div>
+    <%- include('partials/footer') %>
